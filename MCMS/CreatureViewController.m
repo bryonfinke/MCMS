@@ -10,7 +10,10 @@
 #import "MagicalCreature.h"
 
 @interface CreatureViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *creatureName;
+
+@property BOOL edit;
+@property (weak, nonatomic) IBOutlet UITextField *editNameInput;
+@property (weak, nonatomic) IBOutlet UIButton *updateCreature;
 
 @end
 
@@ -18,22 +21,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self.editNameInput setHidden:YES];
+    [self.updateCreature setHidden:YES];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)editButtonClicked:(UIBarButtonItem *)sender {
+    [self.editNameInput setHidden:NO];
+    [self.updateCreature setHidden:NO];
+    if ([sender.title isEqualToString:@"Edit"]) {
+        sender.title = @"Done";
+        self.edit = YES;
+        [self.editNameInput setHidden:NO];
+        [self.updateCreature setHidden:NO];
+    } else {
+        sender.title = @"Edit";
+        self.edit = NO;
+        [self.editNameInput setHidden:YES];
+        [self.updateCreature setHidden:YES];
+    }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)updateCreature:(id)sender {
+    self.creature.name = self.editNameInput.text;
+    self.title = self.creature.name;
 }
-*/
 
 @end
