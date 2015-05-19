@@ -15,6 +15,7 @@
 @property NSString *awesomeness;
 @property UIImage *image;
 @property NSMutableArray *accessories;
+@property NSMutableArray *accessoryStatues;
 
 -(instancetype)initWithName: (NSString *)name andAwesomeness: (NSString *)stuff;
 

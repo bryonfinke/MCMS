@@ -27,14 +27,30 @@
     creature1.name = @"Smaug";
     creature2.name = @"Trogdor";
     creature3.name = @"Falcor";
-    
+
+    creature1.awesomeness = @"This is creature 1";
+    creature2.awesomeness = @"This is creature 2";
+    creature3.awesomeness = @"This is creature 3";
+
+    NSNumber* noObj = [NSNumber numberWithBool:NO];
     creature1.accessories = [NSMutableArray arrayWithObjects:@"sword", @"mace", nil];
+    creature1.accessories = [NSMutableArray arrayWithObjects:noObj, noObj, nil];
     creature2.accessories = [NSMutableArray arrayWithObjects:@"knife", @"cannon", nil];
+    creature2.accessories = [NSMutableArray arrayWithObjects:noObj, noObj, nil];
     creature3.accessories = [NSMutableArray arrayWithObjects:@"nunchucks", @"sheild", nil];
+    creature3.accessories = [NSMutableArray arrayWithObjects:noObj, noObj, nil];
+
+    creature1.image = [UIImage imageNamed:@"creature_1"];
+    creature2.image = [UIImage imageNamed:@"creature_2"];
+    creature3.image = [UIImage imageNamed:@"creature_3"];
 
     self.creatures = [NSMutableArray arrayWithObjects:creature1, creature2, creature3, nil];
-    
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self.creaturesTableView reloadData];
+}
+
 - (IBAction)addCreature:(id)sender {
     MagicalCreature *creature = [[MagicalCreature alloc]init];
     creature.name = self.nameInput.text;
@@ -61,7 +77,6 @@
     MagicalCreature *creature = [self.creatures objectAtIndex:indexPath.row];
     CreatureViewController *vc = segue.destinationViewController;
     vc.creature = creature;
-    vc.title = creature.name;
 }
 
 @end
