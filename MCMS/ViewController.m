@@ -27,8 +27,13 @@
     creature1.name = @"Smaug";
     creature2.name = @"Trogdor";
     creature3.name = @"Falcor";
+    
+    creature1.accessories = [NSMutableArray arrayWithObjects:@"sword", @"mace", nil];
+    creature2.accessories = [NSMutableArray arrayWithObjects:@"knife", @"cannon", nil];
+    creature3.accessories = [NSMutableArray arrayWithObjects:@"nunchucks", @"sheild", nil];
 
     self.creatures = [NSMutableArray arrayWithObjects:creature1, creature2, creature3, nil];
+    
 }
 - (IBAction)addCreature:(id)sender {
     MagicalCreature *creature = [[MagicalCreature alloc]init];
